@@ -26,6 +26,7 @@ class TokenType(Enum):
     TK_DOT = auto()                     # .  
     TK_AND = auto()                     # &   地址与运算符
     TK_OR = auto()                      # |
+    TK_THAN = auto()                    # :
 
 
     TK_FALSE = auto()                   # !
@@ -53,6 +54,20 @@ class TokenType(Enum):
     TK_CSTR = auto()        #
 
     """关键字"""
+    KW_IMPORT = auto()      # import
+    KW_RETURN = auto()      # return
+    KW_IF = auto()          # if
+    KW_SWITCH = auto()      # switch
+    KW_WHILE = auto()       # while
+    KW_FOR = auto()         # for
+    KW_UNION = auto()       # union
+    KW_STRUCT = auto()      # struct
+    KW_CLASS = auto()       # class
+
+
+    KW_VAR = auto()         # var
+    KW_FUNCTION = auto()    # function,func
+
     KW_VOID = auto()        # void关键字
     KW_SHORT = auto()       # short关键字
     KW_INT = auto()         # int关键字
@@ -82,6 +97,7 @@ token_type_dict = {
     ".":TokenType.TK_DOT,
     "&":TokenType.TK_AND,
     "|":TokenType.TK_OR,
+    ":":TokenType.TK_THAN,
 
     "!":TokenType.TK_FALSE,
 
@@ -103,6 +119,87 @@ token_type_dict = {
     ",":TokenType.TK_COMMA,
     "...":TokenType.TK_ELLIPSIS,
 
+
+    "import":TokenType.KW_IMPORT,
+    "include":TokenType.KW_IMPORT,
+    "return":TokenType.KW_RETURN,
+    "if":TokenType.KW_IF,
+    "swtich":TokenType.KW_SWITCH,
+    "when":TokenType.KW_SWITCH,
+    "while":TokenType.KW_WHILE,
+    "for":TokenType.KW_FOR,
+    "union":TokenType.KW_UNION,
+    "struct":TokenType.KW_STRUCT,
+    "class":TokenType.KW_CLASS,
+    
+
+    "var":TokenType.KW_VAR,
+    "function":TokenType.KW_FUNCTION,
+    "func":TokenType.KW_FUNCTION,
+
+    "void":TokenType.KW_VOID,
+    "short":TokenType.KW_SHORT,
+    "int":TokenType.KW_INT,
+    "long":TokenType.KW_LONG,
+    "float":TokenType.KW_FLOAT,
+    "double":TokenType.KW_DOUBLE,
+    "bool":TokenType.KW_BOOL,
+    "char":TokenType.KW_CHAR,
+    "string":TokenType.KW_STRING,
+
+};
+
+
+operator_dict = {
+
+    "+":TokenType.TK_PLUS,
+    "-":TokenType.TK_MINUS,
+    "*":TokenType.TK_STAR,
+    "/":TokenType.TK_DIVIDE,
+    "%":TokenType.TK_MOD,
+    "==":TokenType.TK_EQ,
+    "!=":TokenType.TK_NEQ,
+    "<":TokenType.TK_LT,
+    "<=":TokenType.TK_LEQ,
+    ">":TokenType.TK_GT,
+    ">=":TokenType.TK_GEQ,
+    "=":TokenType.TK_ASSIGN,
+    "->":TokenType.TK_POINTSTO,
+    ".":TokenType.TK_DOT,
+    "&":TokenType.TK_AND,
+    "|":TokenType.TK_OR,
+    ":":TokenType.TK_THAN,
+
+    "!":TokenType.TK_FALSE,
+
+    "+=":TokenType.TK_PLUS,
+    "-=":TokenType.TK_MINUS,
+    "*=":TokenType.TK_STAR,
+
+    "++":TokenType.TK_PLUS,
+    "--":TokenType.TK_MINUS,
+
+};
+
+
+keyword_dict = {
+
+    "import":TokenType.KW_IMPORT,
+    "include":TokenType.KW_IMPORT,
+    "return":TokenType.KW_RETURN,
+    "if":TokenType.KW_IF,
+    "swtich":TokenType.KW_SWITCH,
+    "when":TokenType.KW_SWITCH,
+    "while":TokenType.KW_WHILE,
+    "for":TokenType.KW_FOR,
+    "union":TokenType.KW_UNION,
+    "struct":TokenType.KW_STRUCT,
+    "class":TokenType.KW_CLASS,
+
+    "var":TokenType.KW_VAR,
+    "function":TokenType.KW_FUNCTION,
+    "func":TokenType.KW_FUNCTION,
+
     "void":TokenType.KW_VOID,
     "short":TokenType.KW_SHORT,
     "int":TokenType.KW_INT,
@@ -113,6 +210,23 @@ token_type_dict = {
     "char":TokenType.KW_CHAR,
     "string":TokenType.KW_STRING,
 };
+
+
+var_dict = {
+    "var":TokenType.KW_VAR,
+    "function":TokenType.KW_FUNCTION,
+    "func":TokenType.KW_FUNCTION,
+
+    "void":TokenType.KW_VOID,
+    "short":TokenType.KW_SHORT,
+    "int":TokenType.KW_INT,
+    "long":TokenType.KW_LONG,
+    "float":TokenType.KW_FLOAT,
+    "double":TokenType.KW_DOUBLE,
+    "bool":TokenType.KW_BOOL,
+    "char":TokenType.KW_CHAR,
+    "string":TokenType.KW_STRING,
+}
 
 
 

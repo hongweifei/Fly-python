@@ -1,7 +1,29 @@
-
+﻿
 
 /*a test file*/
 //单行注释测试
+
+
+
+var a = 10;
+
+
+
+
+function 输出(str,afwa)
+{
+
+
+}
+
+
+
+/*
+void print(str)
+{
+
+}
+
 
 
 int main(int argc,char *argv[])
@@ -42,4 +64,4 @@ typedef enum
 }TokenCode;
 
 
-
+*/

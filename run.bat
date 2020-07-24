@@ -1,6 +1,6 @@
 
 
-python main.py
+python main.py test.txt
 
 
 pause

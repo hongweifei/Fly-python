@@ -26,6 +26,16 @@ class Lexer(object):
         self.token:TokenStream = TokenStream();
         
 
+    def match(self, regexp):
+        """
+        Matches something at the current position, skipping past
+        whitespace. Even if we can't match, the current position is
+        still skipped past the leading whitespace.
+        """
+
+        self.skip_whitespace()
+        return self.match_regexp(regexp)
+
 
     def next_line(self):
 
@@ -109,7 +119,16 @@ class Lexer(object):
                 else:
                     self.next_ch(-1);
                     self.token.append(Token(self.file,token_type_dict[ch],ch,self.line,self.cols));
-                
+
+            
+
+            elif ch in ("<",">","!","="):
+                next_ch = self.next_ch(1);
+                if next_ch == "=":
+                    self.token.append(Token(self.file,token_type_dict[ch + next_ch],ch + next_ch,self.line,self.cols - 1));
+                else:
+                    self.next_ch(-1);
+                    self.token.append(Token(self.file,token_type_dict[ch],ch,self.line,self.cols));
             
 
             #注释
@@ -145,16 +164,20 @@ class Lexer(object):
             
 
             #符号
-            elif ch in ("(",")","[","]","{","}",",",".",";"):
+            elif ch in ("(",")","[","]","{","}",",",";"):
                 self.token.append(Token(self.file,token_type_dict[ch],ch,self.line,self.cols));
-            
 
-            #不等于或假
-            elif ch == "!":
-                next_ch = self.next_ch(1);
 
-                if ch == "=":
-                    self.token.append(Token(self.file,token_type_dict[ch + "="],ch + "=",self.line,self.cols - 1));
+            #省略号
+            elif ch == ".":
+                next_ch = self.next_ch();
+                if next_ch == ".":
+                    next_ch = self.next_ch();
+                    if next_ch == ".":
+                        self.token.append(Token(self.file,token_type_dict["..."],"...",self.line,self.cols));
+                    else:
+                        self.next_ch(-2);
+                        self.token.append(Token(self.file,token_type_dict[ch],ch,self.line,self.cols));
                 else:
                     self.next_ch(-1);
                     self.token.append(Token(self.file,token_type_dict[ch],ch,self.line,self.cols));
@@ -189,15 +212,6 @@ class Lexer(object):
                 self.next_ch(-1);
                 self.token.append(Token(self.file,TokenType.TK_CNUMBER,value,self.line,self.cols - len(value) + 1));
 
-
-            #赋值与比较
-            elif ch == "=":
-                next_ch = self.next_ch(1);
-                if next_ch == "=":
-                    self.token.append(Token(self.file,token_type_dict[ch + "="],"==",self.line,self.cols - 1));
-                else:
-                    self.next_ch(-1);
-                    self.token.append(Token(self.file,token_type_dict[ch],"=",self.line,self.cols));
 
 
             
